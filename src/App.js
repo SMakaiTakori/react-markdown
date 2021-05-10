@@ -1,21 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import ReactMarkdown from "react-markdown";
+import gfm from "remark-gfm";
 import "./App.css";
 
-export const App = () => {
-  const [input, setInput] = useState();
+export default function App() {
+  const markdown = `Just a link: https://reactjs.com.`;
 
   return (
     <div className="App">
-      <textarea
-        className="textarea"
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
+      <ReactMarkdown
+        remarkPlugins={[gfm]}
+        children={markdown}
+        className="markdown"
       />
-
-      <ReactMarkdown source={input} className="markdown" />
     </div>
   );
-};
-
-export default App;
+}
